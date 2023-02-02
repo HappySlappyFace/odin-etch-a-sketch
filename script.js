@@ -1,5 +1,5 @@
-let numberColumn=8;
-let numberRow=8;
+let numberColumn=10;
+let numberRow=10;
 const divContainer = document.querySelector(".container");
 for (var i=0;i<numberRow;i++){
     const divRow=document.createElement('div');
