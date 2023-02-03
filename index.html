@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.jpg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:wght@200;400;800&display=swap" rel="stylesheet">
@@ -14,25 +14,34 @@
 <body>
     <div class="header">
         <h1>Etch-a-Sketch</h1>
-        <h4>Project realised by HappySlappyFace, following <span id="TOP">The Odin Project</span> Cirriculum</h4>
+        
     </div>
-    <div class="container"></div>
+    <div class="CContainer">
+        <div></div>
+        <div class="container"></div>
+        <div></div>
+    </div>
+    
     <div class="controls">
-        <button onclick="fillContainer()">Fill</button>
-        <button onclick="initializeContainer()">Reset</button>
-        <button onclick="changeContainerSize()">Change Size</button>
+        <button class="controlsElement" onclick="fillContainer()">Fill</button>
+        <button class="controlsElement" onclick="initializeContainer()">Reset</button>
+        <button class="controlsElement" onclick="changeContainerSize()">Change Size</button>
         <div class="ButtonContainer">
-            <button onclick="switchRainbow()">Toggle Color Mode</button>
+            <button class="controlsElement" onclick="switchRainbow()">Toggle Color Mode</button>
             <h3 id="colorText">Predefined</h3>
         </div>
-        <div  class="ButtonContainer">
-            <button onclick="switchMode()">Toggle Auto-paint</button>
+        <div  class="ButtonContainer ">
+            <button class="controlsElement" onclick="switchMode()">Toggle Auto-paint</button>
             <h3 id="paintText">Click</h3>
         </div>
         
-        <input id="colorPicker" type="color" value="#333333">
+        <input class="controlsElement" id="colorPicker" type="color" value="#333333">
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+        <h4>Project realised by HappySlappyFace, following <span id="TOP">The Odin Project</span> Cirriculum</h4>
+        <h2>Copyright <span>&copy;</span> 2023</h2>
+        <i class="fab fa-github" aria-hidden="true"></i>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

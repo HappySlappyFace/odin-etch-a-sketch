@@ -12,7 +12,7 @@ let colors=["white","red","yellow","green","blue","purple","black"];
 colorPicker.addEventListener("input", setWheelColor);
 function changeMouseStatus(e){
     mouseStatus=e.buttons%2;
-    console.log(mouseStatus)
+    // console.log(mouseStatus)
 }
 
 divContainer.addEventListener('mousedown',changeMouseStatus);
@@ -68,7 +68,6 @@ function switchRainbow(){
     }
 }
 function changeColor(){
-    
     if (mouseStatus || mode!=2){
         switch(rainbow){
             case 0:
@@ -106,8 +105,8 @@ function deleteElementEventListeners(){
 }
 
 function changeContainerSize(){
-    numberColumn = prompt("Width");
-    numberRow = prompt("Height");
+    numberColumn = prompt("Enter Size");
+    numberRow = numberColumn;
     deleteContainer();
     createContainer();
     initializeContainer();
