@@ -4,9 +4,20 @@ let rainbow=0;
 let mode=0;
 let modeString='mousedown';
 let WheelColor='black';
+let mouseStatus;
+
 const divContainer = document.querySelector(".container");
 const colorPicker = document.querySelector("#colorPicker");
+let colors=["white","red","yellow","green","blue","purple","black"];
 colorPicker.addEventListener("input", setWheelColor);
+function changeMouseStatus(e){
+    mouseStatus=e.buttons%2;
+    console.log(mouseStatus)
+}
+
+divContainer.addEventListener('mousedown',changeMouseStatus);
+divContainer.addEventListener('mouseup',changeMouseStatus);
+
 function createContainer(){
     for (let i=0;i<numberRow;i++){
         const divRow=document.createElement('div');
@@ -57,22 +68,25 @@ function switchRainbow(){
     }
 }
 function changeColor(){
-    let colors=["white","red","yellow","green","blue","purple","black"];
-    switch(rainbow){
-        case 0:
-            let currentColor=this.style.backgroundColor;
-            // console.log(currentColor);
-            let newIndex=(colors.indexOf(currentColor)+1);
-            if (newIndex>6 || newIndex==-1){
-                newIndex=0;
-            }
-            this.style.backgroundColor=colors[newIndex];
-            break;
-        case 1:
-            this.style.backgroundColor="rgb("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+")";
-            break;
-        case 2:
-            this.style.backgroundColor=WheelColor;
+    
+    if (mouseStatus || mode!=2){
+        switch(rainbow){
+            case 0:
+                let currentColor=this.style.backgroundColor;
+                // console.log(currentColor);
+                let newIndex=(colors.indexOf(currentColor)+1);
+                if (newIndex>6 || newIndex==-1){
+                    newIndex=0;
+                }
+                this.style.backgroundColor=colors[newIndex];
+                break;
+            case 1:
+                this.style.backgroundColor="rgb("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+")";
+                break;
+            case 2:
+                this.style.backgroundColor=WheelColor;
+                break;
+        }
     }
 }
 
@@ -100,19 +114,45 @@ function changeContainerSize(){
     addElementEventListeners(modeString);
 }
 function switchMode(){
-    mode=Math.abs(mode-1);
+    mode=(mode+1)%3;
     switch (mode) {
         case 0:
             document.querySelector("#paintText").textContent="Click"
+            modeString='mousedown'
             break;
         case 1:
             document.querySelector("#paintText").textContent="Hover"
+            modeString='mouseenter'
+            break;
+        case 2:
+            document.querySelector("#paintText").textContent="Draw";
+            modeString='mouseenter'
             break;
     }
     deleteElementEventListeners();
-    if (mode===0) {modeString='mousedown'}
-    else {modeString='mouseenter'}
     addElementEventListeners(modeString);
+}
+function fillContainer(){
+    const divs=document.querySelectorAll(".containerElement");
+    divs.forEach(element => {
+        switch(rainbow){
+            case 0:
+                let currentColor=element.style.backgroundColor;
+                // console.log(currentColor);
+                let newIndex=(colors.indexOf(currentColor)+1);
+                if (newIndex>6 || newIndex==-1){
+                    newIndex=0;
+                }
+                element.style.backgroundColor=colors[newIndex];
+                break;
+            case 1:
+                element.style.backgroundColor="rgb("+Math.random()*255+","+Math.random()*255+","+Math.random()*255+")";
+                break;
+            case 2:
+                element.style.backgroundColor=WheelColor;
+                break;
+        }
+    });
 }
 
 createContainer();
