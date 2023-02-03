@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    outline: solid 1px green;
 }
 p,h1,h2,h3,h4,p{
     font-family: 'Sofia Sans Condensed', sans-serif;
@@ -29,14 +30,16 @@ body{
     align-items: center;
     /* border: 1px solid black; */
     /* width: 600px; */
+    flex-shrink: 1;
 }
 .containerRow{
     display: flex;
-    
+    flex-shrink: 1;
 }
 .containerElement{
     width: 50px;
-    height: 50px;
+    aspect-ratio: 1;
+    flex-shrink: 1;
     background-color: transparent;
     border: 1px dashed black;
 }
@@ -70,4 +73,10 @@ button:hover{
 }
 button:active{
     box-shadow: inset 0px 0px 7px 2px rgba(255, 150, 150, 0.7);
+}
+@media only screen and (max-width: 768px) {
+    .containerElement{
+        width: 40px;
+        aspect-ratio: 1;
+    }
 }
