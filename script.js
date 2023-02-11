@@ -18,28 +18,44 @@ function changeMouseStatus(e){
 divContainer.addEventListener('mousedown',changeMouseStatus);
 divContainer.addEventListener('mouseup',changeMouseStatus);
 
-function createContainer(){
-    for (let i=0;i<numberRow;i++){
-        const divRow=document.createElement('div');
-        divRow.setAttribute('class','containerRow')
-        for (let j=0;j<numberColumn;j++){
-            const div=document.createElement('div');
-            div.setAttribute('class','containerElement');
-            div.setAttribute('draggable', 'false');
-            div.style.backgroundColor = "white";  
+// function createContainer(){
+//     for (let i=0;i<numberRow;i++){
+//         const divRow=document.createElement('div');
+//         divRow.setAttribute('class','containerRow')
+//         for (let j=0;j<numberColumn;j++){
+//             const div=document.createElement('div');
+//             div.setAttribute('class','containerElement');
+//             div.setAttribute('draggable', 'false');
+//             div.style.backgroundColor = "white";  
             
-            divRow.appendChild(div);
-        }
-        divContainer.setAttribute('draggable', 'false');
-        divContainer.appendChild(divRow);
+//             divRow.appendChild(div);
+//         }
+//         divContainer.setAttribute('draggable', 'false');
+//         divContainer.appendChild(divRow);
+//     }
+// }
+function createContainer(){
+    let elements="";
+    for (let j=0;j<numberColumn*numberColumn;j++){
+        elements += `<div class="containerElement" draggable="false" style=
+        "width:${(500/numberColumn)-2}px" ></div> `
+        // const div=document.createElement('div');
+        // div.setAttribute('class','containerElement');
+        // div.setAttribute('draggable', 'false');
+        // div.style.backgroundColor = "white";  
+        // divContainer.appendChild(div);
     }
+    divContainer.innerHTML=elements;
+    // document.querySelectorAll(".containerElement").forEach(element => {
+    //     element.style.width=`${(500/numberColumn)-2}px`;
+    // });
 }
 
 function setWheelColor(event){
     WheelColor=event.target.value;
 }
 function deleteContainer(){
-    const rows=document.querySelectorAll(".containerRow");
+    const rows=document.querySelectorAll(".containerElement");
     rows.forEach(e => {
         divContainer.removeChild(e);
     });
